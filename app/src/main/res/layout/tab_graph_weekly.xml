@@ -1,0 +1,76 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.ext.exercise_tracker.tab_graph_weekly">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="100dip"
+            android:layout_height="40dip"
+            android:text="From"
+            android:id="@+id/startDateW"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="32dp" />
+
+
+        <TextView
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/startDateViewW"
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/endDateViewW"
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="100dip"
+            android:layout_height="40dip"
+            android:text="To"
+            android:id="@+id/endDateW"
+            android:layout_below="@+id/endDateViewW"
+            android:layout_alignParentEnd="true" />
+
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:id="@+id/graph1C"
+            android:layout_below="@+id/graph1"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="30dp" />
+
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:id="@+id/graph1"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/startDateW"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="100dip"
+            android:layout_height="40dip"
+            android:text="Generate"
+            android:id="@+id/generate"
+            android:layout_alignTop="@+id/startDateW"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+</ScrollView>
