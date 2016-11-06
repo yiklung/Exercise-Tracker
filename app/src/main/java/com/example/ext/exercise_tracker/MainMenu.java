@@ -127,9 +127,9 @@ public class MainMenu extends AppCompatActivity {
         tv_username = (TextView) findViewById(R.id.tv_userName);
         tv_date = (TextView) findViewById(R.id.tv_date);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String currentDateandTime = sdf.format(new Date());
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd");
         String currentDateandTime2 = sdf2.format(new Date());
         et_startTime.setText(currentDateandTime);
         tv_date.setText(currentDateandTime2);
@@ -294,7 +294,7 @@ public class MainMenu extends AppCompatActivity {
     }; // ends private inner class sensorEventListener
 
         public String getDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss a");
         String date = sdf.format(new Date());
         return date;
     }

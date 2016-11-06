@@ -89,48 +89,8 @@ public class tab_graph_weekly extends Fragment {
 
 
         graph = (GraphView) rootView.findViewById(R.id.graph1);
-        /*series = new LineGraphSeries<>(generateData());
-        series.setTitle("Steps");
-        series.setDrawBackground(true);
-        series.setColor(Color.argb(255, 255, 60, 60));
-        series.setBackgroundColor(Color.argb(100, 204, 119, 119));
-        series.setDrawDataPoints(true);
-        graph.addSeries(series);
-        graph.getGridLabelRenderer().setVerticalAxisTitle("Steps");
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("Session");
-        graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.BLUE);
-        graph.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
-        graph.getViewport().setScalable(true);
-        graph.getViewport().setScrollable(true);
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(50);
-        graph.getViewport().setScrollable(true);
-
-        graph.getLegendRenderer().setVisible(true);
-        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);*/
 
         graph1 = (GraphView) rootView.findViewById(R.id.graph1C);
-        /*series1 = new LineGraphSeries<>(generateData2());
-        series1.setTitle("Calories");
-        series1.setDrawBackground(true);
-        series1.setColor(Color.argb(255, 255, 60, 60));
-        series1.setBackgroundColor(Color.argb(100, 204, 119, 119));
-        series1.setDrawDataPoints(true);
-        graph1.addSeries(series1);
-        graph1.getGridLabelRenderer().setVerticalAxisTitle("Calories");
-        graph1.getGridLabelRenderer().setHorizontalAxisTitle("Session");
-        graph1.getGridLabelRenderer().setVerticalAxisTitleColor(Color.BLUE);
-        graph1.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
-        graph1.getViewport().setScalable(true);
-        graph1.getViewport().setScrollable(true);
-        graph1.getViewport().setXAxisBoundsManual(true);
-        graph1.getViewport().setMinX(0);
-        graph1.getViewport().setMaxX(50);
-        graph1.getViewport().setScrollable(true);
-
-        graph1.getLegendRenderer().setVisible(true);
-        graph1.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);*/
 
         return rootView;
     }
@@ -228,6 +188,7 @@ public class tab_graph_weekly extends Fragment {
             series.setColor(Color.argb(255, 255, 60, 60));
             series.setBackgroundColor(Color.argb(100, 204, 119, 119));
             series.setDrawDataPoints(true);
+            graph.removeAllSeries();
             graph.addSeries(series);
             graph.getGridLabelRenderer().setVerticalAxisTitle("Steps");
             graph.getGridLabelRenderer().setHorizontalAxisTitle("Session");
@@ -250,6 +211,7 @@ public class tab_graph_weekly extends Fragment {
             series1.setColor(Color.argb(255, 255, 60, 60));
             series1.setBackgroundColor(Color.argb(100, 204, 119, 119));
             series1.setDrawDataPoints(true);
+            graph1.removeAllSeries();
             graph1.addSeries(series1);
             graph1.getGridLabelRenderer().setVerticalAxisTitle("Calories");
             graph1.getGridLabelRenderer().setHorizontalAxisTitle("Session");
@@ -308,8 +270,8 @@ public class tab_graph_weekly extends Fragment {
                 temp2 = "0" + strMonthOfYear;
                 strMonthOfYear = temp2;
             }
-            dateViewS.setText(strDayOfMonth + "/" + strMonthOfYear
-                    + "/" + String.valueOf(year));
+            dateViewS.setText(String.valueOf(year) + "/" + strMonthOfYear
+                    + "/" + strDayOfMonth);
             dateSW = dateViewS.getText().toString();
         }
     };
@@ -350,8 +312,8 @@ public class tab_graph_weekly extends Fragment {
                 temp2 = "0" + strMonthOfYear;
                 strMonthOfYear = temp2;
             }
-            dateViewE.setText(strDayOfMonth + "/" + strMonthOfYear
-                    + "/" + String.valueOf(year));
+            dateViewE.setText(String.valueOf(year) + "/" + strMonthOfYear
+                    + "/" + strDayOfMonth);
             dateEW = dateViewE.getText().toString();
         }
     };

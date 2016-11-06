@@ -180,7 +180,7 @@ public class tab_graph_daily extends Fragment{
             protected String doInBackground(String... params) {
                 String IP = DataHolder.getInstance().getIP();
                 String folder = DataHolder.getInstance().getFolder();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String date = sdf.format(new Date());
                 String user_id = DataHolder.getInstance().getUserID();
                 DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());

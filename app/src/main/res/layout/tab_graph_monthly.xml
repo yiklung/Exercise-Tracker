@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg_gradient"
     tools:context="com.example.ext.exercise_tracker.tab_graph_monthly">
 
     <!-- TODO: Update blank fragment layout -->
@@ -64,6 +65,22 @@
             android:layout_below="@+id/graph2"
             android:layout_alignParentStart="true"
             android:layout_marginTop="30dp" />
+
+        <Button
+            android:layout_width="100dip"
+            android:layout_height="40dip"
+            android:text="Generate"
+            android:id="@+id/generateM"
+            android:layout_alignTop="@+id/startDateM"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="100dip"
+            android:layout_height="40dip"
+            android:text="Back"
+            android:id="@+id/back"
+            android:layout_below="@+id/graph2C"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 </ScrollView>
