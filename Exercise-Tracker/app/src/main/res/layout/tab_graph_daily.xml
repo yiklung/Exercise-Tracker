@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg_gradient"
+    tools:context="com.example.ext.exercise_tracker.tab_graph_daily">
+
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+
+<com.jjoe64.graphview.GraphView
+    android:layout_width="match_parent"
+    android:layout_height="200dip"
+    android:id="@+id/graphC"
+    android:layout_marginTop="54dp"
+    android:layout_below="@+id/graph"
+    android:layout_alignParentStart="true" />
+
+<com.jjoe64.graphview.GraphView
+    android:layout_width="match_parent"
+    android:layout_height="200dip"
+    android:id="@+id/graph"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true" />
+
+</RelativeLayout>
+    </ScrollView>

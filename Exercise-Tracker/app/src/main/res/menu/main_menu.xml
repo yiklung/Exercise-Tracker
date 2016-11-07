@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item   android:id="@+id/share_id"
+        android:title="Share"
+        android:icon="@drawable/share48"
+        app:showAsAction="ifRoom"
+        ></item>
+    <item   android:id="@+id/profile_id"
+        android:title="Profile"
+        android:icon="@drawable/profile50"
+        app:showAsAction="never"
+        ></item>
+    <item   android:id="@+id/logOut_id"
+        android:title="LogOut"
+        android:icon="@drawable/logout48"
+        app:showAsAction="never"
+        ></item>
+
+</menu>

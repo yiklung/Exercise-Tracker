@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Exercise Tracker</string>
+    <string name="a_button_SignIn">login</string>
+    <string name="a_text_welcome">Main Menu</string>
+    <string name="a_switch_connect">Mi-Band</string>
+    <string name="a_button_FindD">Find Devices</string>
+    <string name="a_button_Visible">ShowMe</string>
+    <string name="a_button_goGary">Gary</string>
+    <string name="g_button_gary">Im Gary</string>
+    <string name="title_activity_graph">Graph</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="j_button_Jeff">GO Jeff</string>
+    <string name="j_button_welcome">Welcome IM jeff</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="a_button_share">Share</string>
+    <string name="a_tv_sessionID">Session ID:</string>
+    <string name="a_tv_steps">Steps Count</string>
+    <string name="a_tv_date">Date:</string>
+    <string name="a_btn_prev">Previous</string>
+    <string name="a_btn_next">Next</string>
+    <string name="a_tv_calories">Calories</string>
+    <string name="a_et_phone_code">+60</string>
+    <string name="a_button_send">Send Message</string>
+    <string name="a_btn_login">Sign In</string>
+    <string name="a_tv_un">Username:</string>
+    <string name="a_tv_psw">Password:</string>
+    <string name="a_et_defIP">10.0.2.2</string>
+    <string name="a_tv_connec_sett">Server IP Address</string>
+    <string name="a_btn_back">Back</string>
+    <string name="a_tv_username">Username</string>
+    <string name="a_fullname">Fullname</string>
+    <string name="a_create">Create</string>
+    <string name="a_et_tempIP">10.0.2.2</string>
+    <string name="a_tv_defFolder">Database Folder</string>
+    <string name="a_et_defFolder">FYP</string>
+    <string name="a_tv_loginFile">index.php</string>
+    <string name="a_tv_fileName">Filename</string>
+    <string name="a_et_indexPHP">index.php</string>
+    <string name="a_btn_apply">Apply</string>
+    <string name="a_tv_startTime">Start Time:</string>
+    <string name="a_tv_endTime">End Time:</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="a_tv_name">Name</string>
+    <string name="a_tv_email">Email</string>
+    <string name="a_tv_height">Height, cm</string>
+    <string name="a_tv_weight">Weight, kg</string>
+    <string name="a_tv_bmi">BMI</string>
+    <string name="a_tv_goal">Goal</string>
+</resources>

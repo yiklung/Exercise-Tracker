@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorHint">#f26d21</color>
+    <color name="selected">#824986</color>
+    <color name="unselected">#E4DFEC</color>
+    <color name="sBlue">#00FFFF</color>
+    <color name="tBlue">#FFFFFF</color>
+    <color name="tGreen">#20F778</color>
+
+</resources>
+<!--
+<color name="tBlue">#33A6FF</color>
+-->
