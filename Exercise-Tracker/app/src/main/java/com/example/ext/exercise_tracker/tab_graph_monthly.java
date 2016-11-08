@@ -154,7 +154,9 @@ public class tab_graph_monthly extends Fragment {
             int i;
             for (i = 0; i < peoples.length(); i++) {
                 JSONObject c = peoples.getJSONObject(i);
-                String id = c.getString(TAG_ID);
+                String id = (Integer.toString(i + 1));
+                Log.d("SESSION N::",id);
+                //String id = c.getString(TAG_ID);
                 //String user_id = c.getString(TAG_UserID);
                 String steps = c.getString(TAG_NAME);
                 String calories = c.getString(TAG_ADD);
@@ -189,10 +191,12 @@ public class tab_graph_monthly extends Fragment {
             graph.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
             graph.getViewport().setScalable(true);
             graph.getViewport().setScrollable(true);
+            graph.getViewport().setScrollableY(true);
+            graph.getViewport().setScalableY(true);
             graph.getViewport().setXAxisBoundsManual(true);
+            graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setMinX(0);
-            graph.getViewport().setMaxX(100);
-            graph.getViewport().setScrollable(true);
+            graph.getViewport().setMaxX(40);
 
             graph.getLegendRenderer().setVisible(true);
             graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
@@ -211,10 +215,12 @@ public class tab_graph_monthly extends Fragment {
             graph1.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
             graph1.getViewport().setScalable(true);
             graph1.getViewport().setScrollable(true);
+            graph1.getViewport().setScrollableY(true);
+            graph1.getViewport().setScalableY(true);
+            graph1.getViewport().setXAxisBoundsManual(true);
             graph1.getViewport().setXAxisBoundsManual(true);
             graph1.getViewport().setMinX(0);
-            graph1.getViewport().setMaxX(100);
-            graph1.getViewport().setScrollable(true);
+            graph1.getViewport().setMaxX(40);
 
             graph1.getLegendRenderer().setVisible(true);
             graph1.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
