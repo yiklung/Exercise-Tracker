@@ -209,7 +209,7 @@ public class MainMenu extends AppCompatActivity {
             }
 
         });
-        et_steps.setFocusable(false);
+        //et_steps.setFocusable(false);
         et_calories.setFocusable(false);
     }
     private Runnable updateTimerThread = new Runnable() {
