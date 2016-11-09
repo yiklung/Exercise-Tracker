@@ -1,9 +1,11 @@
 package com.example.ext.exercise_tracker;
 
+import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -30,11 +32,14 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.content.Context;
 import android.widget.Toast;
@@ -69,11 +74,18 @@ public class MainMenu extends AppCompatActivity {
     private TextView tv_username;
     private TextView tv_date;
     private TextView tv_goal;
+    private TextView txtProgress;
+    private TextView txtProgressSubTitle;
 
     private EditText et_steps;
     private EditText et_startTime;
     private EditText et_endTime;
     private EditText et_calories;
+
+
+
+    private int pStatus = 0;
+    private Handler handler = new Handler();
 
     Button btn_share;
     public static final int CONNECTION_TIMEOUT=10000;
@@ -98,6 +110,7 @@ public class MainMenu extends AppCompatActivity {
     long timeInMilliseconds = 0L;
     long timeSwapBuff = 0L;
     long updatedTime = 0L;
+    String currentDateandTime;
 
     // X, Y, Z-Points at which we want to trigger a 'steps'
     private double thresholdy;
@@ -127,9 +140,17 @@ public class MainMenu extends AppCompatActivity {
         tv_username = (TextView) findViewById(R.id.tv_userName);
         tv_date = (TextView) findViewById(R.id.tv_date);
 
+        Typeface custom_font_Asimov = Typeface.createFromAsset(getAssets(), "fonts/Asimov.otf");
+        Typeface custom_font_Insomnia = Typeface.createFromAsset(getAssets(), "fonts/Insomnia.ttf");
+        tv_timer.setTypeface(custom_font_Asimov);
+        et_steps.setTypeface(custom_font_Asimov);
+        et_calories.setTypeface(custom_font_Asimov);
+
+        tv_username.setTypeface(custom_font_Insomnia);
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String currentDateandTime = sdf.format(new Date());
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+        currentDateandTime = sdf.format(new Date());
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMMM ");
         String currentDateandTime2 = sdf2.format(new Date());
         et_startTime.setText(currentDateandTime);
         tv_date.setText(currentDateandTime2);
@@ -151,10 +172,12 @@ public class MainMenu extends AppCompatActivity {
         int intScrWidth = (int)(Math.round(dpWidth));
         Log.d("SCR WIDTH::::",Integer.toString(intScrWidth));
         int i;
-        for (i=1;i<8;i++) {
+        for (i=1;i<4;i++) {
             int resID1 = getResources().getIdentifier("layout"+Integer.toString(i), "id", getPackageName());
             setLayoutSize(intScrWidth, resID1);
         }
+        int resID1 = getResources().getIdentifier("tlayout1", "id", getPackageName());
+        setLayoutSizeTable(intScrWidth, resID1);
 
         // Set Accelerometer X,Y,Z-axis threshold (For sensitivity)
         thresholdy = 9;
@@ -176,24 +199,31 @@ public class MainMenu extends AppCompatActivity {
         enableAccelerometerListening();
 
 
-        double Caloriesvalue = 1000;
+        double Caloriesvalue = 0;
         Caloriesvalue = UnitConverter.step2calories(Caloriesvalue);
         et_calories.setText(String.format("%.3f", Caloriesvalue));
-        et_steps.setText("1000");
+        et_steps.setText("0");
 
         int steps = Integer.parseInt(et_steps.getText().toString());
         int goal = Integer.parseInt(DataHolder.getInstance().getGoal());
         double progress = steps*100/goal;
-        tv_goal.setText(Double.toString(progress)+"%");
+        tv_goal.setText(Double.toString(progress) + "%");
 
+        //Progress BAR::
+        txtProgress = (TextView) findViewById(R.id.tv_goal);
+        //txtProgressSubTitle = (TextView) findViewById(R.id.txtProgressSubTitle);
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        final String msg = "goal:10000";
 
         //::STEP LISTENER
         et_steps.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 int steps = Integer.parseInt(et_steps.getText().toString());
                 int goal = Integer.parseInt(DataHolder.getInstance().getGoal());
-                double progress = steps*100/goal;
-                tv_goal.setText(Double.toString(progress)+"%");
+                double progress = steps * 100 / goal;
+                int progress_int = (int) progress;
+                progressBar.setProgress(progress_int);
+                tv_goal.setText(Integer.toString(progress_int) + "%");
 
                 double Caloriesvalue;
                 Caloriesvalue = UnitConverter.step2calories(steps);
@@ -209,8 +239,33 @@ public class MainMenu extends AppCompatActivity {
             }
 
         });
-        //et_steps.setFocusable(false);
+        et_steps.setFocusable(false);
         et_calories.setFocusable(false);
+
+
+
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (pStatus <= 100) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setProgress(pStatus);
+                            txtProgress.setText(pStatus + " %");
+                            //txtProgressSubTitle.setText("goal:10000");
+                        }
+                    });
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    pStatus++;
+                }
+            }
+        }).start();
+        */
     }
     private Runnable updateTimerThread = new Runnable() {
 
@@ -241,6 +296,17 @@ public class MainMenu extends AppCompatActivity {
     private void setLayoutSize(int width, int resID){
 
         LinearLayout layout = (LinearLayout)findViewById(resID);
+        // Gets the layout params that will allow you to resize the layout
+        GridLayout.LayoutParams params = (GridLayout.LayoutParams) layout.getLayoutParams();
+
+        params.width = (int)(Math.round(width));
+        Log.d("Width to layout::",Integer.toString(params.width));
+        layout.setLayoutParams(params);
+    }
+
+    private void setLayoutSizeTable(int width, int resID){
+
+        TableLayout layout = (TableLayout)findViewById(resID);
         // Gets the layout params that will allow you to resize the layout
         GridLayout.LayoutParams params = (GridLayout.LayoutParams) layout.getLayoutParams();
 
@@ -293,12 +359,21 @@ public class MainMenu extends AppCompatActivity {
         } // end onAccuracy Changed
     }; // ends private inner class sensorEventListener
 
-        public String getDate(){
+    public String getDate(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss a");
         String date = sdf.format(new Date());
         return date;
     }
-
+    public String getTime(){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss a");
+        String date = sdf.format(new Date());
+        return date;
+    }
+    public String getDateOnly(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
+        return date;
+    }
 
     public void doStop(View view){
 
@@ -522,11 +597,18 @@ public class MainMenu extends AppCompatActivity {
     public String getMsg() {
         String msg, fullname;
         fullname = DataHolder.getInstance().getUsername();
-        msg = fullname + " is willing to share his/her ExerciseTracker progress" + "\n" +
+        /*msg = fullname + " is willing to share his/her ExerciseTracker progress" + "\n" +
                 //"ID: "+ et_sid.getText() + "\n" +
                 "For chosen session " + fullname + " did " + et_steps.getText() + " steps," + "\n" +
                 "also during that session has been burnt " + et_calories.getText() + " calories, " + "\n" +
                 "above information was saved on " + et_startTime.getText();
+                */
+        msg =   "Username: "+fullname+"\n"+
+                "Date: " + getDateOnly() + "\n"+
+                "Time: " + getTime() + "\n" +
+                "Duration: " +  tv_timer.getText().toString() + "\n" +
+                "Steps: " + et_steps.getText().toString() + "\n" +
+                "Calories: " +et_calories.getText().toString() + "\n";
         return msg;
     }
     public void convert(View v){

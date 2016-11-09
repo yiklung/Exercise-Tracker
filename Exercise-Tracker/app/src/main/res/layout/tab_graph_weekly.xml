@@ -6,7 +6,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/bg_gradient"
     tools:context="com.example.ext.exercise_tracker.tab_graph_weekly">
 
     <!-- TODO: Update blank fragment layout -->
