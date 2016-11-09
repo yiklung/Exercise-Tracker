@@ -105,9 +105,7 @@ public class tab_graph_daily extends Fragment{
             int i;
             for (i=0;i<peoples.length();i++){
                 JSONObject c = peoples.getJSONObject(i);
-                String id = (Integer.toString(i + 1));
-                Log.d("SESSION N::",id);
-                //String id = c.getString(TAG_ID);
+                String id = c.getString(TAG_ID);
                 //String user_id = c.getString(TAG_UserID);
                 String steps = c.getString(TAG_NAME);
                 String calories = c.getString(TAG_ADD);
@@ -131,48 +129,44 @@ public class tab_graph_daily extends Fragment{
             e.printStackTrace();
         }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPool);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>((dataPool));
         series.setTitle("Steps");
         series.setDrawBackground(true);
         series.setColor(Color.argb(255, 255, 60, 60));
         series.setBackgroundColor(Color.argb(100, 204, 119, 119));
         series.setDrawDataPoints(true);
-        graph.addSeries(series);
         graph.getGridLabelRenderer().setVerticalAxisTitle("Steps");
         graph.getGridLabelRenderer().setHorizontalAxisTitle("Session");
         graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.BLUE);
         graph.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
         graph.getViewport().setScalable(true);
         graph.getViewport().setScrollable(true);
-        graph.getViewport().setScrollableY(true);
-        graph.getViewport().setScalableY(true);
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(20);
+        graph.getViewport().setMaxX(50);
+        graph.getViewport().setScrollable(true);
+        graph.addSeries(series);
 
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
 
-        LineGraphSeries<DataPoint> series1 = new LineGraphSeries<DataPoint>(dataPool1);
+        LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>((dataPool1));
         series1.setTitle("Calories");
         series1.setDrawBackground(true);
         series1.setColor(Color.argb(255, 255, 60, 60));
         series1.setBackgroundColor(Color.argb(100, 204, 119, 119));
         series1.setDrawDataPoints(true);
-        graph1.addSeries(series1);
         graph1.getGridLabelRenderer().setVerticalAxisTitle("Calories");
         graph1.getGridLabelRenderer().setHorizontalAxisTitle("Session");
         graph1.getGridLabelRenderer().setVerticalAxisTitleColor(Color.BLUE);
         graph1.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
         graph1.getViewport().setScalable(true);
         graph1.getViewport().setScrollable(true);
-        graph1.getViewport().setScrollableY(true);
-        graph1.getViewport().setScalableY(true);
-        graph1.getViewport().setXAxisBoundsManual(true);
         graph1.getViewport().setXAxisBoundsManual(true);
         graph1.getViewport().setMinX(0);
-        graph1.getViewport().setMaxX(20);
+        graph1.getViewport().setMaxX(50);
+        graph1.getViewport().setScrollable(true);
+        graph1.addSeries(series1);
 
         graph1.getLegendRenderer().setVisible(true);
         graph1.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
@@ -186,7 +180,7 @@ public class tab_graph_daily extends Fragment{
             protected String doInBackground(String... params) {
                 String IP = DataHolder.getInstance().getIP();
                 String folder = DataHolder.getInstance().getFolder();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String date = sdf.format(new Date());
                 String user_id = DataHolder.getInstance().getUserID();
                 DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());

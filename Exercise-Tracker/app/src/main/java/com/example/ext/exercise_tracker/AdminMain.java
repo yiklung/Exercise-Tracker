@@ -77,7 +77,7 @@ public class AdminMain extends AppCompatActivity {
         e = (EditText) findViewById(R.id.et_email);
         g = (EditText) findViewById(R.id.et_goal);
 
-        un.setFilters(new InputFilter[]{Validation.getFilter("AN")});
+        un.setFilters(new InputFilter[]{Validation.getFilter("Aspace")});
         psw.setFilters(new InputFilter[]{Validation.getFilter("AN")});
         fn.setFilters(new InputFilter[]{Validation.getFilter("A")});
         e.setFilters(new InputFilter[]{Validation.getFilter("ANat")});

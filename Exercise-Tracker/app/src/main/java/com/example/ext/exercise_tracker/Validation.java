@@ -45,6 +45,10 @@ public class Validation {
                             pattern = Pattern.compile("[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.]*");
                         }
                         break;
+                        case "Aspace": {
+                            pattern = Pattern.compile("[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ]*");
+                        }
+                        break;
                         default:
                             pattern = Pattern.compile("[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890]*");
                     }

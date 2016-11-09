@@ -85,7 +85,7 @@ public class Profile extends AppCompatActivity {
         email = (EditText) findViewById(R.id.et_email);
         goal = (EditText) findViewById(R.id.et_tresh);
 
-        name.setFilters(new InputFilter[]{Validation.getFilter("AN")});
+        name.setFilters(new InputFilter[]{Validation.getFilter("Aspace")});
         email.setFilters(new InputFilter[]{Validation.getFilter("ANat")});
         weight.setFilters(new InputFilter[]{Validation.getFilter("N")});
         height.setFilters(new InputFilter[]{Validation.getFilter("N")});
