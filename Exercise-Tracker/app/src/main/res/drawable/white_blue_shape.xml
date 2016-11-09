@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        >
+        <shape android:shape="rectangle" >
+            <gradient
+                android:angle="45"
+                android:centerX="35%"
+                android:centerColor="@color/btnBlue"
+                android:startColor="@color/btnBlue"
+                android:endColor="@color/btnBlue"
+                android:type="linear"
+                />
+            <padding
+                android:left="0dp"
+                android:top="0dp"
+                android:right="0dp"
+                android:bottom="0dp"
+                />
+            <size
+                android:width="200dp"
+                android:textSize="20dp"
+                android:height="32dp"
+                />
+
+        </shape>
+    </item>
+</selector>
+    <!--
+    border::
+    <stroke android:width="2px" android:color="@color/btnBlue" />
+    -->

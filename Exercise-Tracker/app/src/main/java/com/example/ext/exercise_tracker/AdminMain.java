@@ -1,6 +1,8 @@
 package com.example.ext.exercise_tracker;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -41,6 +43,8 @@ public class AdminMain extends AppCompatActivity {
     EditText h;
     EditText e;
     EditText g;
+    final int USERNAME_LENGTH = 6;
+    final int HW_LENGTH = 2;
     public static final int CONNECTION_TIMEOUT=10000;
     public static final int READ_TIMEOUT=15000;
     @Override
@@ -77,9 +81,9 @@ public class AdminMain extends AppCompatActivity {
         e = (EditText) findViewById(R.id.et_email);
         g = (EditText) findViewById(R.id.et_goal);
 
-        un.setFilters(new InputFilter[]{Validation.getFilter("Aspace")});
+        un.setFilters(new InputFilter[]{Validation.getFilter("AN")});
         psw.setFilters(new InputFilter[]{Validation.getFilter("AN")});
-        fn.setFilters(new InputFilter[]{Validation.getFilter("A")});
+        fn.setFilters(new InputFilter[]{Validation.getFilter("Aspace ")});
         e.setFilters(new InputFilter[]{Validation.getFilter("ANat")});
         w.setFilters(new InputFilter[]{Validation.getFilter("N")});
         h.setFilters(new InputFilter[]{Validation.getFilter("N")});
@@ -97,7 +101,7 @@ public class AdminMain extends AppCompatActivity {
         un.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 String tick="";
-                if (!Validation.isEmpty(un.getText().toString())) {
+                if (!Validation.isEmpty(un.getText().toString()) && Validation.isLength(un.length(),USERNAME_LENGTH)) {
                     cb_un.setVisibility(View.VISIBLE);
                     cb_un.setChecked(true);
                     valiArray[0] = 1;
@@ -127,7 +131,7 @@ public class AdminMain extends AppCompatActivity {
         psw.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 String tick = "";
-                if (!Validation.isEmpty(psw.getText().toString())) {
+                if (!Validation.isEmpty(psw.getText().toString()) && Validation.isLength(psw.length(),USERNAME_LENGTH)) {
                     cb_psw.setVisibility(View.VISIBLE);
                     cb_psw.setChecked(true);
                     tick = "true";
@@ -157,7 +161,7 @@ public class AdminMain extends AppCompatActivity {
         fn.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 String tick = "";
-                if (!Validation.isEmpty(fn.getText().toString())) {
+                if (!Validation.isEmpty(fn.getText().toString()) && Validation.isLength(fn.length(),USERNAME_LENGTH)) {
                     cb_fn.setVisibility(View.VISIBLE);
                     cb_fn.setChecked(true);
                     tick = "true";
@@ -217,7 +221,7 @@ public class AdminMain extends AppCompatActivity {
         h.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 String tick = "";
-                if (!Validation.isEmpty(h.getText().toString())) {
+                if (!Validation.isEmpty(h.getText().toString()) && Validation.isLength(fn.length(),HW_LENGTH)) {
                     cb_height.setVisibility(View.VISIBLE);
                     cb_height.setChecked(true);
                     tick = "true";
@@ -247,7 +251,7 @@ public class AdminMain extends AppCompatActivity {
         w.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 String tick = "";
-                if (!Validation.isEmpty(w.getText().toString())) {
+                if (!Validation.isEmpty(w.getText().toString()) && Validation.isLength(fn.length(),HW_LENGTH)) {
                     cb_weight.setVisibility(View.VISIBLE);
                     cb_weight.setChecked(true);
                     tick = "true";
@@ -328,7 +332,26 @@ public class AdminMain extends AppCompatActivity {
         final String email = e.getText().toString();
         final String goal = g.getText().toString();
 
-        new AsyncLogin().execute(username, password, fullname, weight, height, email, goal);
+        if(Validation.isLess(Integer.parseInt(g.getText().toString()),7000)){
+            //Toast toast = Toast.makeText(getApplicationContext(),"For better performance set GOAL to 7000 steps...",Toast.LENGTH_SHORT);
+            //toast.setGravity(Gravity.CENTER, 0, 0);
+            //toast.show();
+            new AlertDialog.Builder(AdminMain.this)
+                    .setTitle("Goal Notification")
+                    .setMessage("For better performance set GOAL to 7000 steps. Are you sure want to proceed like this?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            new AsyncLogin().execute(username, password, fullname, weight, height, email, goal);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
 
     }
 

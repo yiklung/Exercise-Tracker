@@ -48,5 +48,5 @@
     <string name="a_tv_height">Height, cm</string>
     <string name="a_tv_weight">Weight, kg</string>
     <string name="a_tv_bmi">BMI</string>
-    <string name="a_tv_goal">Goal</string>
+    <string name="a_tv_goal">Goal, steps</string>
 </resources>

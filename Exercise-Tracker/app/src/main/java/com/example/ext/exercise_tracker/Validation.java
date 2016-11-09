@@ -89,4 +89,14 @@ public class Validation {
             return true;
         }else {return false;}
     }
+    public final static boolean isLength(int Length, int Value){
+        if (Length>=Value){
+            return true;
+        }else {return false;}
+    }
+    public final static boolean isLess(int Value, int Param){
+        if (Param>Value){
+            return true;
+        }else {return false;}
+    }
 }
