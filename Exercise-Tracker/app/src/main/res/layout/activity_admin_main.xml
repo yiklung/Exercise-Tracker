@@ -16,8 +16,9 @@
         android:text="@string/a_tv_username"
         android:id="@+id/tv_cUsername"
         android:width="200dp"
+        android:height="25dp"
         android:textSize="20dp"
-        android:textColor="#f26d21"
+        android:textColor="@color/white"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -25,20 +26,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/et_cUsername"
-        android:width="200dp"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/white_blue_shape"
+        android:textColor="@color/white"
         android:layout_below="@+id/tv_cUsername"
         android:layout_alignParentStart="true" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
         android:id="@+id/tv_cPassword"
         android:width="200dp"
+        android:height="25dp"
         android:textSize="20dp"
-        android:textColor="#f26d21"
+        android:textColor="@color/white"
         android:layout_below="@+id/et_cUsername"
         android:layout_alignParentStart="true" />
 
@@ -46,20 +48,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/et_cPassword"
-        android:width="200dp"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/white_blue_shape"
+        android:textColor="@color/white"
         android:layout_below="@+id/tv_cPassword"
         android:layout_alignParentStart="true" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a_fullname"
         android:id="@+id/tv_fn"
         android:width="200dp"
+        android:height="25dp"
         android:textSize="20dp"
-        android:textColor="#f26d21"
+        android:textColor="@color/white"
         android:layout_below="@+id/et_cPassword"
         android:layout_alignParentStart="true" />
 
@@ -67,9 +70,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/et_cFullname"
-        android:width="200dp"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/white_blue_shape"
+        android:textColor="@color/white"
         android:layout_below="@+id/tv_fn"
         android:layout_alignParentStart="true" />
 
@@ -77,6 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a_btn_back"
+        android:layout_marginTop="20dp"
         android:id="@+id/button6"
         android:onClick="doBack"
         android:background="#1496BB"
@@ -85,13 +88,15 @@
         android:layout_alignEnd="@+id/et_goal" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a_tv_email"
         android:id="@+id/tv_email"
         android:width="200dp"
+        android:height="25dp"
         android:textSize="20dp"
-        android:textColor="#f26d21"
+        android:textColor="@color/white"
         android:layout_below="@+id/et_cFullname"
         android:layout_alignParentStart="true" />
 
@@ -99,42 +104,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/et_email"
-        android:width="200dp"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/white_blue_shape"
+        android:textColor="@color/white"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tv_email"
         android:layout_alignParentLeft="true" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a_tv_height"
         android:id="@+id/tv_height"
         android:width="200dp"
+        android:height="25dp"
         android:textSize="20dp"
-        android:textColor="#f26d21"
-        android:layout_centerVertical="true"
+        android:textColor="@color/white"
+        android:layout_below="@+id/et_email"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/et_height"
-        android:width="200dp"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/white_blue_shape"
+        android:textColor="@color/white"
         android:layout_below="@+id/tv_height"
         android:layout_alignParentStart="true" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a_tv_weight"
         android:id="@+id/tv_weight"
         android:width="200dp"
+        android:height="25dp"
         android:textSize="20dp"
-        android:textColor="#f26d21"
+        android:textColor="@color/white"
         android:layout_below="@+id/et_height"
         android:layout_alignParentStart="true" />
 
@@ -142,21 +149,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/et_weight"
-        android:width="200dp"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/white_blue_shape"
+        android:textColor="@color/white"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tv_weight"
         android:layout_alignParentLeft="true" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a_tv_goal"
+        android:height="25dp"
         android:id="@+id/tv_goal"
         android:width="200dp"
         android:textSize="20dp"
-        android:textColor="#f26d21"
+        android:textColor="@color/white"
         android:layout_below="@+id/et_weight"
         android:layout_alignParentStart="true" />
 
@@ -168,16 +176,15 @@
         android:onClick="doCreate"
         android:background="#1496BB"
         android:textColor="#ffffff"
-        android:layout_alignTop="@+id/button6"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/button6" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/et_goal"
-        android:width="200dp"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/white_blue_shape"
+        android:textColor="@color/white"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tv_goal"
         android:layout_alignParentLeft="true" />
@@ -187,10 +194,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cb_un"
+        android:height="25dp"
         android:button="@drawable/chk_box_custom"
         android:visibility="invisible"
-        android:layout_alignTop="@+id/et_cUsername"
-        android:layout_toEndOf="@+id/et_cUsername" />
+        android:layout_above="@+id/tv_cPassword"
+        android:layout_toEndOf="@+id/tv_cUsername" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -198,7 +206,7 @@
         android:id="@+id/cb_psw"
         android:button="@drawable/chk_box_custom"
         android:visibility="invisible"
-        android:layout_below="@+id/tv_cPassword"
+        android:layout_above="@+id/tv_fn"
         android:layout_toEndOf="@+id/tv_cPassword" />
 
     <CheckBox
@@ -207,7 +215,7 @@
         android:id="@+id/cb_fn"
         android:button="@drawable/chk_box_custom"
         android:visibility="invisible"
-        android:layout_below="@+id/tv_fn"
+        android:layout_alignBottom="@+id/et_cFullname"
         android:layout_toEndOf="@+id/tv_fn" />
 
     <CheckBox
@@ -216,8 +224,8 @@
         android:id="@+id/cb_email"
         android:button="@drawable/chk_box_custom"
         android:visibility="invisible"
-        android:layout_below="@+id/tv_email"
-        android:layout_toEndOf="@+id/tv_email" />
+        android:layout_alignBottom="@+id/et_email"
+        android:layout_alignStart="@+id/cb_height" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -225,7 +233,8 @@
         android:id="@+id/cb_height"
         android:button="@drawable/chk_box_custom"
         android:visibility="invisible"
-        android:layout_below="@+id/tv_height"
+        android:checked="false"
+        android:layout_above="@+id/tv_weight"
         android:layout_toEndOf="@+id/tv_height" />
 
     <CheckBox
@@ -234,8 +243,8 @@
         android:id="@+id/cb_weight"
         android:button="@drawable/chk_box_custom"
         android:visibility="invisible"
-        android:layout_below="@+id/tv_weight"
-        android:layout_toEndOf="@+id/et_weight" />
+        android:layout_above="@+id/tv_goal"
+        android:layout_toEndOf="@+id/tv_weight" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -243,6 +252,6 @@
         android:id="@+id/cb_goal"
         android:button="@drawable/chk_box_custom"
         android:visibility="invisible"
-        android:layout_below="@+id/tv_goal"
-        android:layout_toEndOf="@+id/tv_goal" />
+        android:layout_above="@+id/button6"
+        android:layout_alignStart="@+id/cb_height" />
 </RelativeLayout>

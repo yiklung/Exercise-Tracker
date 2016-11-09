@@ -1,12 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.ext.exercise_tracker.Graph">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-
+    >
+    <item   android:id="@+id/back_id"
+        android:title="Back"
+        android:icon="@drawable/logout48"
+        app:showAsAction="never"
+        ></item>
 
 </menu>

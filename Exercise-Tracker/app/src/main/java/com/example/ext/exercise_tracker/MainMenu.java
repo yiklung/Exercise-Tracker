@@ -538,16 +538,19 @@ public class MainMenu extends AppCompatActivity {
 
     public void doGraphActivity (View view){
         Intent startGraphActivity = new Intent (this, GraphActivity.class);
+        customHandler.removeCallbacks(updateTimerThread);
         startActivity(startGraphActivity);
         MainMenu.this.finish();
     }
     public void doLogOut (View view){
         Intent goBack = new Intent (this, LogActivity.class);
+        customHandler.removeCallbacks(updateTimerThread);
         startActivity(goBack);
         MainMenu.this.finish();
     }
     public void doProfile (View view){
         Intent goProfile = new Intent (this, Profile.class);
+        customHandler.removeCallbacks(updateTimerThread);
         startActivity(goProfile);
         MainMenu.this.finish();
     }

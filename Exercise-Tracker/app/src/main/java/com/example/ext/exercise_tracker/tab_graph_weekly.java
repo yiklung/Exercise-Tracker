@@ -41,11 +41,8 @@ import java.util.Date;
  */
 public class tab_graph_weekly extends Fragment {
 
-    private DatePicker datePicker;
-    private Calendar date;
     private TextView dateViewS;
     private TextView dateViewE;
-    private int year, month, day;
     private Button mstartDateW;
     private Button mendDateW;
     private Button mgenerate;
@@ -53,8 +50,6 @@ public class tab_graph_weekly extends Fragment {
     static String dateSW;
     private GraphView graph;
     private GraphView graph1;
-    //private LineGraphSeries<DataPoint> series;
-    //private LineGraphSeries<DataPoint> series1;
 
     private static final String TAG="TESTING::::::::::::::";
     private static final String TAG_RESULTS="result";
@@ -66,9 +61,6 @@ public class tab_graph_weekly extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-        String stringFromPHP,str;
         View rootView = inflater.inflate(R.layout.tab_graph_weekly, container, false);
         dateViewS = (TextView) rootView.findViewById(R.id.startDateViewW);
         dateViewE = (TextView) rootView.findViewById(R.id.endDateViewW);
@@ -89,48 +81,8 @@ public class tab_graph_weekly extends Fragment {
 
 
         graph = (GraphView) rootView.findViewById(R.id.graph1);
-        /*series = new LineGraphSeries<>(generateData());
-        series.setTitle("Steps");
-        series.setDrawBackground(true);
-        series.setColor(Color.argb(255, 255, 60, 60));
-        series.setBackgroundColor(Color.argb(100, 204, 119, 119));
-        series.setDrawDataPoints(true);
-        graph.addSeries(series);
-        graph.getGridLabelRenderer().setVerticalAxisTitle("Steps");
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("Session");
-        graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.BLUE);
-        graph.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
-        graph.getViewport().setScalable(true);
-        graph.getViewport().setScrollable(true);
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(50);
-        graph.getViewport().setScrollable(true);
-
-        graph.getLegendRenderer().setVisible(true);
-        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);*/
 
         graph1 = (GraphView) rootView.findViewById(R.id.graph1C);
-        /*series1 = new LineGraphSeries<>(generateData2());
-        series1.setTitle("Calories");
-        series1.setDrawBackground(true);
-        series1.setColor(Color.argb(255, 255, 60, 60));
-        series1.setBackgroundColor(Color.argb(100, 204, 119, 119));
-        series1.setDrawDataPoints(true);
-        graph1.addSeries(series1);
-        graph1.getGridLabelRenderer().setVerticalAxisTitle("Calories");
-        graph1.getGridLabelRenderer().setHorizontalAxisTitle("Session");
-        graph1.getGridLabelRenderer().setVerticalAxisTitleColor(Color.BLUE);
-        graph1.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
-        graph1.getViewport().setScalable(true);
-        graph1.getViewport().setScrollable(true);
-        graph1.getViewport().setXAxisBoundsManual(true);
-        graph1.getViewport().setMinX(0);
-        graph1.getViewport().setMaxX(50);
-        graph1.getViewport().setScrollable(true);
-
-        graph1.getLegendRenderer().setVisible(true);
-        graph1.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);*/
 
         return rootView;
     }
@@ -155,16 +107,6 @@ public class tab_graph_weekly extends Fragment {
         }
     };
 
-    /*private View.OnClickListener btnClick3 = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (v == mgenerate) {
-                Log.d("ONCLICKLISTENER::", "ENTER FUNCTION");
-                createGraph(v);
-            }
-        }
-    };*/
-
     private void createGraph() {
 
         String stringFromPHP, str;
@@ -183,25 +125,17 @@ public class tab_graph_weekly extends Fragment {
         stringFromPHP = DataHolder.getInstance().getStrPHP();
 
         Log.d(TAG, "stringFromPHP=" + stringFromPHP);
-        //showList(stringFromPHP);
-        //String[] str = new String[10];
         JSONArray peoples = null;
-        //DataPoint[] dataPool = null;
-        //DataPoint[] dataPool1 = null;
         try {
             JSONObject jsonObj = new JSONObject(stringFromPHP);
             peoples = jsonObj.getJSONArray(TAG_RESULTS);
-            //dataPool = new DataPoint[peoples.length()+1];
             DataPoint[] dataPool = new DataPoint[peoples.length()];
-            //dataPool[0] = new DataPoint(0,0);
-            //dataPool1 = new DataPoint[peoples.length()+1];
             DataPoint[] dataPool1 = new DataPoint[peoples.length()];
-            //dataPool1[0] = new DataPoint(0,0);
             int i;
             for (i = 0; i < peoples.length(); i++) {
                 JSONObject c = peoples.getJSONObject(i);
-                String id = c.getString(TAG_ID);
-                //String user_id = c.getString(TAG_UserID);
+                String id = (Integer.toString(i + 1));
+                Log.d("SESSION N::",id);
                 String steps = c.getString(TAG_NAME);
                 String calories = c.getString(TAG_ADD);
 
@@ -209,25 +143,21 @@ public class tab_graph_weekly extends Fragment {
                 int steps_int = Integer.parseInt(steps);
                 int calories_int = Integer.parseInt(calories);
 
-                //dataPool[i+1] = new DataPoint(id_int,steps_int);
-                //dataPool1[i+1] = new DataPoint(id_int,calories_int);
                 dataPool[i] = new DataPoint(id_int, steps_int);
                 dataPool1[i] = new DataPoint(id_int, calories_int);
 
-
                 Log.d(TAG, "ID:" + id);
-                //Log.d(TAG, "user_ID:"+user_id);
                 Log.d(TAG, "steps:" + steps);
                 Log.d(TAG, "calories:" + calories);
             }
 
-            //GraphView graph = (GraphView) v.findViewById(R.id.graph1);
             LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPool);
             series.setTitle("Steps");
             series.setDrawBackground(true);
             series.setColor(Color.argb(255, 255, 60, 60));
             series.setBackgroundColor(Color.argb(100, 204, 119, 119));
             series.setDrawDataPoints(true);
+            graph.removeAllSeries();
             graph.addSeries(series);
             graph.getGridLabelRenderer().setVerticalAxisTitle("Steps");
             graph.getGridLabelRenderer().setHorizontalAxisTitle("Session");
@@ -235,21 +165,23 @@ public class tab_graph_weekly extends Fragment {
             graph.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
             graph.getViewport().setScalable(true);
             graph.getViewport().setScrollable(true);
+            graph.getViewport().setScrollableY(true);
+            graph.getViewport().setScalableY(true);
             graph.getViewport().setXAxisBoundsManual(true);
+            graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setMinX(0);
-            graph.getViewport().setMaxX(50);
-            graph.getViewport().setScrollable(true);
+            graph.getViewport().setMaxX(20);
 
             graph.getLegendRenderer().setVisible(true);
             graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
 
-            //GraphView graph1 = (GraphView) v.findViewById(R.id.graph1C);
             LineGraphSeries<DataPoint> series1 = new LineGraphSeries<DataPoint>(dataPool1);
             series1.setTitle("Calories");
             series1.setDrawBackground(true);
             series1.setColor(Color.argb(255, 255, 60, 60));
             series1.setBackgroundColor(Color.argb(100, 204, 119, 119));
             series1.setDrawDataPoints(true);
+            graph1.removeAllSeries();
             graph1.addSeries(series1);
             graph1.getGridLabelRenderer().setVerticalAxisTitle("Calories");
             graph1.getGridLabelRenderer().setHorizontalAxisTitle("Session");
@@ -257,10 +189,12 @@ public class tab_graph_weekly extends Fragment {
             graph1.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.BLUE);
             graph1.getViewport().setScalable(true);
             graph1.getViewport().setScrollable(true);
+            graph1.getViewport().setScrollableY(true);
+            graph1.getViewport().setScalableY(true);
+            graph1.getViewport().setXAxisBoundsManual(true);
             graph1.getViewport().setXAxisBoundsManual(true);
             graph1.getViewport().setMinX(0);
-            graph1.getViewport().setMaxX(50);
-            graph1.getViewport().setScrollable(true);
+            graph1.getViewport().setMaxX(20);
 
             graph1.getLegendRenderer().setVisible(true);
             graph1.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
@@ -308,8 +242,8 @@ public class tab_graph_weekly extends Fragment {
                 temp2 = "0" + strMonthOfYear;
                 strMonthOfYear = temp2;
             }
-            dateViewS.setText(strDayOfMonth + "/" + strMonthOfYear
-                    + "/" + String.valueOf(year));
+            dateViewS.setText(String.valueOf(year) + "/" + strMonthOfYear
+                    + "/" + strDayOfMonth);
             dateSW = dateViewS.getText().toString();
         }
     };
@@ -350,128 +284,12 @@ public class tab_graph_weekly extends Fragment {
                 temp2 = "0" + strMonthOfYear;
                 strMonthOfYear = temp2;
             }
-            dateViewE.setText(strDayOfMonth + "/" + strMonthOfYear
-                    + "/" + String.valueOf(year));
+            dateViewE.setText(String.valueOf(year) + "/" + strMonthOfYear
+                    + "/" + strDayOfMonth);
             dateEW = dateViewE.getText().toString();
         }
     };
 
-    private DataPoint[] generateData() {
-        String stringFromPHP,str;
-        String currentPHP = getData();
-        Log.d(TAG, "CurrentStringFromPHP="+currentPHP);
-        //::take DATA FROM PHP Session and its Steps Amount in Array
-
-                /*AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-                dialog.setTitle("DB Data Extraction");
-                dialog.setMessage("Keep Patience...");
-                dialog.setNeutralButton("OK", null);
-                dialog.create().show();*/
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        stringFromPHP = DataHolder.getInstance().getStrPHP();
-
-        Log.d(TAG, "stringFromPHP="+stringFromPHP);
-        //showList(stringFromPHP);
-
-        //String[] str = new String[10];
-        JSONArray peoples = null;
-        DataPoint[] dataPool = null;
-        try {
-            JSONObject jsonObj = new JSONObject(stringFromPHP);
-            peoples = jsonObj.getJSONArray(TAG_RESULTS);
-            //dataPool = new DataPoint[peoples.length()+1];
-            dataPool = new DataPoint[peoples.length()];
-            //dataPool[0] = new DataPoint(0,0);
-            //dataPool1 = new DataPoint[peoples.length()+1];
-            //dataPool1[0] = new DataPoint(0,0);
-            int i;
-            for (i=0;i<peoples.length();i++){
-                JSONObject c = peoples.getJSONObject(i);
-                String id = c.getString(TAG_ID);
-                //String user_id = c.getString(TAG_UserID);
-                String steps = c.getString(TAG_NAME);
-                String calories = c.getString(TAG_ADD);
-
-                int id_int = Integer.parseInt(id);
-                int steps_int = Integer.parseInt(steps);
-                int calories_int = Integer.parseInt(calories);
-
-                //dataPool[i+1] = new DataPoint(id_int,steps_int);
-                //dataPool1[i+1] = new DataPoint(id_int,calories_int);
-                dataPool[i] = new DataPoint(id_int,steps_int);
-
-                Log.d(TAG, "ID:"+id);
-                //Log.d(TAG, "user_ID:"+user_id);
-                Log.d(TAG, "steps:"+steps);
-                Log.d(TAG, "calories:"+calories);
-            }
-        } catch (JSONException e) {
-            Log.d(TAG, "JSON EXCEPTION");
-            e.printStackTrace();
-        }
-        return dataPool;
-    }
-
-    private DataPoint[] generateData2() {
-        String stringFromPHP,str;
-        String currentPHP = getData();
-        Log.d(TAG, "CurrentStringFromPHP="+currentPHP);
-        //::take DATA FROM PHP Session and its Steps Amount in Array
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        stringFromPHP = DataHolder.getInstance().getStrPHP();
-
-        Log.d(TAG, "stringFromPHP="+stringFromPHP);
-        //showList(stringFromPHP);
-
-        //String[] str = new String[10];
-        JSONArray peoples = null;
-        DataPoint[] dataPool2 = null;
-        try {
-            JSONObject jsonObj = new JSONObject(stringFromPHP);
-            peoples = jsonObj.getJSONArray(TAG_RESULTS);
-            //dataPool = new DataPoint[peoples.length()+1];
-            dataPool2 = new DataPoint[peoples.length()];
-            //dataPool[0] = new DataPoint(0,0);
-            //dataPool1 = new DataPoint[peoples.length()+1];
-            //dataPool1[0] = new DataPoint(0,0);
-            int i;
-            for (i=0;i<peoples.length();i++){
-                JSONObject c = peoples.getJSONObject(i);
-                String id = c.getString(TAG_ID);
-                //String user_id = c.getString(TAG_UserID);
-                String steps = c.getString(TAG_NAME);
-                String calories = c.getString(TAG_ADD);
-
-                int id_int = Integer.parseInt(id);
-                int steps_int = Integer.parseInt(steps);
-                int calories_int = Integer.parseInt(calories);
-
-                //dataPool[i+1] = new DataPoint(id_int,steps_int);
-                //dataPool1[i+1] = new DataPoint(id_int,calories_int);
-                dataPool2[i] = new DataPoint(id_int,calories_int);
-
-                Log.d(TAG, "ID:"+id);
-                //Log.d(TAG, "user_ID:"+user_id);
-                Log.d(TAG, "steps:"+steps);
-                Log.d(TAG, "calories:"+calories);
-            }
-        } catch (JSONException e) {
-            Log.d(TAG, "JSON EXCEPTION");
-            e.printStackTrace();
-        }
-        return dataPool2;
-    }
 
     public static String getData(){
         class GetDataJSON extends AsyncTask<String, Void, String> {
@@ -550,7 +368,6 @@ public class tab_graph_weekly extends Fragment {
                 Log.d(TAG, "ID:"+id);
                 Log.d(TAG, "steps:"+steps);
                 Log.d(TAG, "calories:"+calories);
-
             }
         } catch (JSONException e) {
             Log.d(TAG, "JSON EXCEPTION");
@@ -558,6 +375,4 @@ public class tab_graph_weekly extends Fragment {
         }
 
     }
-
-
 }

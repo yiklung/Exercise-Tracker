@@ -1,8 +1,10 @@
 package com.example.ext.exercise_tracker;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
@@ -254,22 +256,42 @@ public class Profile extends AppCompatActivity {
     public void doApply(View view){
         String user_id = DataHolder.getInstance().getUserID();
         //::Initiate JAVA->PHP
-        String w = weight.getText().toString();
-        String h = height.getText().toString();
-        String e = email.getText().toString();
-        String n = name.getText().toString();
-        String g = goal.getText().toString();
+        final String w = weight.getText().toString();
+        final String h = height.getText().toString();
+        final String e = email.getText().toString();
+        final String n = name.getText().toString();
+        final String g = goal.getText().toString();
 
         DataHolder.getInstance().setWeight(w);
         DataHolder.getInstance().setHeight(h);
         DataHolder.getInstance().setEmail(e);
         DataHolder.getInstance().setUsername(n);
         DataHolder.getInstance().setGoal(g);
+        if(Validation.isLess(Integer.parseInt(goal.getText().toString()),7000)){
+            //Toast toast = Toast.makeText(getApplicationContext(),"For better performance set GOAL to 7000 steps...",Toast.LENGTH_SHORT);
+            //toast.setGravity(Gravity.CENTER, 0, 0);
+            //toast.show();
+            new AlertDialog.Builder(Profile.this)
+                    .setTitle("Goal Notification")
+                    .setMessage("For better performance set GOAL to 7000 steps. Are you sure want to proceed like this?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (w!=null && w!="" && h!=null && h!="") {
+                                getData(w,h,n,e,g);
+                                doHome(null);
+                            }else Toast.makeText(getApplicationContext(),"Weight and Height cannot be empty!", Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
 
-        if (w!=null && w!="" && h!=null && h!="") {
-            getData(w,h,n,e,g);
-        }else Toast.makeText(getApplicationContext(),"Weight and Height cannot be empty!", Toast.LENGTH_LONG).show();
-        doHome(null);
+
     }
 
     public void getData(final String w,final String h,final String n, final String e, final  String goal){
@@ -280,8 +302,13 @@ public class Profile extends AppCompatActivity {
                 String IP = DataHolder.getInstance().getIP();
                 String folder = DataHolder.getInstance().getFolder();
                 String user_id = DataHolder.getInstance().getUserID();
+
                 DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-                HttpPost httppost = new HttpPost("http://"+IP+"/"+folder+"/user_info.php?user_id="+user_id+"&weight="+w+"&height="+h+"&name="+n+"&email="+e+"&goal="+goal);
+                String http_string = "http://"+IP+"/"+folder+"/user_info.php?user_id="+user_id+"&weight="+w+"&height="+h+"&name="+n+"&email="+e+"&goal="+goal;
+                Log.d("HTTP_POST_before::::::",http_string);
+                http_string = http_string.replace(" ","&");
+                Log.d("HTTP_POST_after::::::",http_string);
+                HttpPost httppost = new HttpPost(http_string);
                 // Depends on your web service
                 httppost.setHeader("Content-type", "application/json");
 
